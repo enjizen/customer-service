@@ -31,7 +31,7 @@ class ProfileController {
 
     @GetMapping("/v1/profile")
     fun getProfileWithEmail(@RequestParam("email") email: String): ResponseEntity<*> {
-        logger.info { "Get profile with id $email" }
+        logger.info { "Get profile with email $email" }
         val profile = profileService.getWithEmail(email)
         return ResponseEntity.ok(profile)
     }
