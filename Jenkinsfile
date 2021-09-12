@@ -20,7 +20,7 @@ pipeline {
              stage('SonarQube analysis') {
                         steps {
                             withSonarQubeEnv('SonarQube') {
-                                sh "mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=admin1"
+                                sh "mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=admin -Dsonar.password=admin1"
                             }
                         }
                     }
