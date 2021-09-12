@@ -17,6 +17,13 @@ pipeline {
                     }
                 }
             }
+             stage('SonarQube analysis') {
+                        steps {
+                            withSonarQubeEnv('SonarQube') {
+                                sh "mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=admin1"
+                            }
+                        }
+                    }
         stage('Build') {
                    steps {
                        sh 'mvn -B -DskipTests clean package'
