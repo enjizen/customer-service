@@ -14,15 +14,18 @@ class ProfileService {
     @Autowired
     private lateinit var mongoTemplate: MongoTemplate
 
-    fun add(request: ProfileRequest) : Profile? {
-        Profile(
-            email = request.email,
-            firstName = request.firstName,
-            lastName = request.lastName,
-            birthDate = request.birthDate
-        ).run {
-           return mongoTemplate.save(this)
+    fun add(request: ProfileRequest?) : Profile? {
+        request?.let {
+            Profile(
+                email = it.email,
+                firstName = it.firstName,
+                lastName = it.lastName,
+                birthDate = it.birthDate
+            ).run {
+                return mongoTemplate.save(this)
+            }
         }
+        return null
     }
 
     fun get(id: String) : Profile? {
