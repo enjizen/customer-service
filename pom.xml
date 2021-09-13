@@ -85,26 +85,6 @@
 		</dependencies>
 	</dependencyManagement>
 
-	<settings>
-		<pluginGroups>
-			<pluginGroup>org.sonarsource.scanner.maven</pluginGroup>
-		</pluginGroups>
-		<profiles>
-			<profile>
-				<id>sonar</id>
-				<activation>
-					<activeByDefault>true</activeByDefault>
-				</activation>
-				<properties>
-					<!-- Optional URL to server. Default value is http://localhost:9000 -->
-					<sonar.host.url>
-						http://localhost:9000
-					</sonar.host.url>
-				</properties>
-			</profile>
-		</profiles>
-	</settings>
-
 	<build>
 		<sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
 		<testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
