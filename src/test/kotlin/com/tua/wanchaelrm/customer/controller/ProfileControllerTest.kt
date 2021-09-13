@@ -8,10 +8,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.InjectMocks
 import org.mockito.Mock
+import org.mockito.Mockito.*
 import org.mockito.junit.MockitoJUnitRunner
 
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.any
 import org.springframework.http.HttpStatus
 
 
@@ -27,7 +26,7 @@ import org.springframework.http.HttpStatus
     @Test
     fun `add profile`() {
         val profile = Profile(id = "0034322", email = "wancham.y@outlook.com")
-        
+
         `when`(profileService.add(any())).thenReturn(profile)
 
         val response = controller.addProfile(ProfileRequest())
@@ -35,13 +34,35 @@ import org.springframework.http.HttpStatus
         assertEquals(HttpStatus.OK, response.statusCode)
         assertEquals("0034322", body.id)
         assertEquals("wancham.y@outlook.com", body.email)
+
+        verify(profileService, times(1)).add(any())
     }
 
     @Test
     fun getProfile() {
+        val profile = Profile(id = "0034322", email = "wancham.y@outlook.com")
+
+        `when`(profileService.get(anyString())).thenReturn(profile)
+
+        val response = controller.getProfile("0034322")
+        val body: Profile = response.body as Profile
+        assertEquals(HttpStatus.OK, response.statusCode)
+        assertEquals("0034322", body.id)
+        assertEquals("wancham.y@outlook.com", body.email)
+        verify(profileService, times(1)).get(anyString())
     }
 
     @Test
     fun getProfileWithEmail() {
+        val profile = Profile(id = "0034322", email = "wancham.y@outlook.com")
+
+        `when`(profileService.getWithEmail(anyString())).thenReturn(profile)
+
+        val response = controller.getProfileWithEmail("wancham.y@outlook.com")
+        val body: Profile = response.body as Profile
+        assertEquals(HttpStatus.OK, response.statusCode)
+        assertEquals("0034322", body.id)
+        assertEquals("wancham.y@outlook.com", body.email)
+        verify(profileService, times(1)).getWithEmail(anyString())
     }
 }
