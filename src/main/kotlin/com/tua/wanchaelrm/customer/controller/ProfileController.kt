@@ -1,9 +1,14 @@
 package com.tua.wanchaelrm.customer.controller
 
+import com.tua.wanchaelrm.customer.constant.HeaderKeyConstant
+import com.tua.wanchaelrm.customer.constant.ResponseConstant
+import com.tua.wanchaelrm.customer.model.document.ProfileDocument
 import com.tua.wanchaelrm.customer.model.request.ProfileRequest
+import com.tua.wanchaelrm.customer.model.response.GeneralResponse
 import com.tua.wanchaelrm.customer.service.ProfileService
 import mu.KotlinLogging
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -30,9 +35,14 @@ class ProfileController {
     }
 
     @GetMapping("/v1/profile")
-    fun getProfileWithEmail(@RequestParam("email") email: String): ResponseEntity<*> {
+    fun getProfileWithEmail(@RequestHeader(HeaderKeyConstant.X_EMAIL) emailHeader: String, @RequestParam("email") email: String): ResponseEntity<*> {
         logger.info { "Get profile with email $email" }
+        if (emailHeader != email) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null)
+        }
         val profile = profileService.getWithEmail(email)
-        return ResponseEntity.ok(profile)
+        val response = GeneralResponse(code = ResponseConstant.SUCCESS, data = profile)
+
+        return ResponseEntity.ok(response)
     }
 }
