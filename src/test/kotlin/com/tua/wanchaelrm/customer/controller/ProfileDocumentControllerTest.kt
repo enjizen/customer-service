@@ -1,6 +1,6 @@
 package com.tua.wanchaelrm.customer.controller
 
-import com.tua.wanchaelrm.customer.model.document.Profile
+import com.tua.wanchaelrm.customer.model.document.ProfileDocument
 import com.tua.wanchaelrm.customer.model.request.ProfileRequest
 import com.tua.wanchaelrm.customer.service.ProfileService
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -15,7 +15,7 @@ import org.springframework.http.HttpStatus
 
 
 @ExtendWith(MockitoExtension::class)
- class ProfileControllerTest {
+internal class ProfileDocumentControllerTest {
 
     @InjectMocks
     private lateinit var controller: ProfileController
@@ -25,12 +25,12 @@ import org.springframework.http.HttpStatus
 
     @Test
     fun `add profile`() {
-        val profile = Profile(id = "0034322", email = "wancham.y@outlook.com")
+        val profileDocument = ProfileDocument(id = "0034322", email = "wancham.y@outlook.com")
 
-        `when`(profileService.add(any())).thenReturn(profile)
+        `when`(profileService.add(any())).thenReturn(profileDocument)
 
         val response = controller.addProfile(ProfileRequest())
-        val body: Profile = response.body as Profile
+        val body: ProfileDocument = response.body as ProfileDocument
         assertEquals(HttpStatus.OK, response.statusCode)
         assertEquals("0034322", body.id)
         assertEquals("wancham.y@outlook.com", body.email)
@@ -40,12 +40,12 @@ import org.springframework.http.HttpStatus
 
     @Test
     fun getProfile() {
-        val profile = Profile(id = "0034322", email = "wancham.y@outlook.com")
+        val profileDocument = ProfileDocument(id = "0034322", email = "wancham.y@outlook.com")
 
-        `when`(profileService.get(anyString())).thenReturn(profile)
+        `when`(profileService.get(anyString())).thenReturn(profileDocument)
 
         val response = controller.getProfile("0034322")
-        val body: Profile = response.body as Profile
+        val body: ProfileDocument = response.body as ProfileDocument
         assertEquals(HttpStatus.OK, response.statusCode)
         assertEquals("0034322", body.id)
         assertEquals("wancham.y@outlook.com", body.email)
@@ -54,12 +54,12 @@ import org.springframework.http.HttpStatus
 
     @Test
     fun getProfileWithEmail() {
-        val profile = Profile(id = "0034322", email = "wancham.y@outlook.com")
+        val profileDocument = ProfileDocument(id = "0034322", email = "wancham.y@outlook.com")
 
-        `when`(profileService.getWithEmail(anyString())).thenReturn(profile)
+        `when`(profileService.getWithEmail(anyString())).thenReturn(profileDocument)
 
         val response = controller.getProfileWithEmail("wancham.y@outlook.com")
-        val body: Profile = response.body as Profile
+        val body: ProfileDocument = response.body as ProfileDocument
         assertEquals(HttpStatus.OK, response.statusCode)
         assertEquals("0034322", body.id)
         assertEquals("wancham.y@outlook.com", body.email)

@@ -17,6 +17,9 @@
 		<java.version>11</java.version>
 		<kotlin.version>1.5.21</kotlin.version>
 		<spring-cloud.version>2020.0.3</spring-cloud.version>
+		<sonar.coverage.exclusions>
+			**/CustomerServiceApplication.kt
+		</sonar.coverage.exclusions>
 	</properties>
 	<dependencies>
 		<dependency>

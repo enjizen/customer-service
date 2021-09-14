@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Field
 import java.util.*
 
 @Document("profile")
-data class Profile(
+data class ProfileDocument(
     @Id
     val id: String? = null,
 

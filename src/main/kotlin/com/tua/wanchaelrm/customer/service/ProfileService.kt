@@ -1,10 +1,9 @@
 package com.tua.wanchaelrm.customer.service
 
-import com.tua.wanchaelrm.customer.model.document.Profile
+import com.tua.wanchaelrm.customer.model.document.ProfileDocument
 import com.tua.wanchaelrm.customer.model.request.ProfileRequest
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.mongodb.core.MongoTemplate
-import org.springframework.data.mongodb.core.findOne
 import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
 import org.springframework.stereotype.Service
@@ -14,9 +13,9 @@ class ProfileService {
     @Autowired
     private lateinit var mongoTemplate: MongoTemplate
 
-    fun add(request: ProfileRequest?) : Profile? {
+    fun add(request: ProfileRequest?) : ProfileDocument? {
         request?.let {
-            Profile(
+            ProfileDocument(
                 email = it.email,
                 firstName = it.firstName,
                 lastName = it.lastName,
@@ -28,17 +27,17 @@ class ProfileService {
         return null
     }
 
-    fun get(id: String) : Profile? {
-       return  mongoTemplate.findById(id, Profile::class.java)
+    fun get(id: String) : ProfileDocument? {
+       return  mongoTemplate.findById(id, ProfileDocument::class.java)
     }
 
-    fun getWithEmail(email: String) : Profile? {
+    fun getWithEmail(email: String) : ProfileDocument? {
         Query().apply {
             addCriteria(  Criteria().apply {
                 and("email").`is`(email)
             })
         }.run {
-            return mongoTemplate.findOne( this, Profile::class.java)
+            return mongoTemplate.findOne( this, ProfileDocument::class.java)
         }
 
 

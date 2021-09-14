@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.data.mongodb.core.mapping.Field
 
 @Document("profile_digital_pass")
-data class ProfileDigitalPass (
+data class ProfileDigitalPassDocument (
     @Id
     val id: String? = null,
 
