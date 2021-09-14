@@ -15,7 +15,7 @@ import org.springframework.http.HttpStatus
 
 
 @ExtendWith(MockitoExtension::class)
-internal class ProfileDocumentControllerTest {
+internal class ProfileControllerTest {
 
     @InjectMocks
     private lateinit var controller: ProfileController

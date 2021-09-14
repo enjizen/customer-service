@@ -15,7 +15,7 @@ import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
 
 @ExtendWith(MockitoExtension::class)
-internal class ProfileDocumentServiceTest {
+internal class ProfileServiceTest {
 
     @InjectMocks
     private lateinit var profileService: ProfileService
