@@ -25,11 +25,9 @@ pipeline {
                         }
                     }
                       stage("Quality gate") {
-                                step {
-                                    timeout(time: 2, unit: ‘MINUTES’) {
-                                                               waitForQualityGate abortPipeline: true
-                                                               }
-                                }
+                               timeout(time: 2, unit: 'MINUTES') {
+                                          waitForQualityGate abortPipeline: true
+                                       }
                             }
         stage('Build') {
                    steps {
