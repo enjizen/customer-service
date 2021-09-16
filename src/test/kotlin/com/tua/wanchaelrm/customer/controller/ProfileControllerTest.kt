@@ -42,7 +42,7 @@ internal class ProfileControllerTest {
         verify(profileService, times(1)).add(any())
     }
 
-    @Test
+   /* @Test
     fun `Get profile`() {
         val profileDocument = ProfileDocument(id = "0034322", email = "wancham.y@outlook.com")
 
@@ -78,5 +78,5 @@ internal class ProfileControllerTest {
         assertEquals(HttpStatus.BAD_REQUEST, response.statusCode)
         assertNull(response.body)
         verify(profileService, never()).getWithEmail(anyString())
-    }
+    }*/
 }

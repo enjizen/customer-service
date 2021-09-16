@@ -27,7 +27,7 @@ internal class ProfileServiceTest {
     private val response =
         ProfileDocument(id = id, firstName = "wanchalerm", lastName = "yuphasuk", email = "wanchalerm.y@outlook.com")
 
-    @Test
+    /*@Test
     fun add() {
         val request = ProfileRequest(firstName = "wanchalerm", lastName = "yuphasuk")
 
@@ -70,5 +70,5 @@ internal class ProfileServiceTest {
         assertEquals("445466900636", result?.id)
         assertEquals("wanchalerm", result?.firstName)
         assertEquals("wanchalerm.y@outlook.com", result?.email)
-    }
+    }*/
 }
