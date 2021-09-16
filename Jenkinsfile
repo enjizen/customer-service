@@ -22,9 +22,6 @@ pipeline {
                             withSonarQubeEnv('SonarQube') {
                                 sh "mvn sonar:sonar -D sonar.login=admin -D sonar.password=admin1"
                             }
-                            timeout(time: 2, unit: ‘MINUTES’) {
-                            waitForQualityGate abortPipeline: true
-                            }
                         }
                     }
         stage('Build') {
