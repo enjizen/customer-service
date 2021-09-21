@@ -11,5 +11,7 @@ class ProfileRequest (
     @JsonProperty("birthDate")
     val birthDate: Date? = null,
     @JsonProperty("email")
-    val email: String? = null
+    val email: String? = null,
+    @JsonProperty("mobile_number")
+    val mobileNumber: String? = null
 )

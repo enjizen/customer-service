@@ -17,6 +17,7 @@ class ProfileService {
         request?.let {
             ProfileDocument(
                 email = it.email,
+                mobileNumber= it.mobileNumber,
                 firstName = it.firstName,
                 lastName = it.lastName,
                 birthDate = it.birthDate
@@ -39,9 +40,5 @@ class ProfileService {
         }.run {
             return mongoTemplate.findOne( this, ProfileDocument::class.java)
         }
-
-
-
-
     }
 }

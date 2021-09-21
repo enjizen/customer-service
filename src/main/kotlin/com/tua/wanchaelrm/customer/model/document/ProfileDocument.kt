@@ -17,6 +17,10 @@ data class ProfileDocument(
     @JsonProperty("email")
     val email: String? = null,
 
+    @Field("mobile_number")
+    @JsonProperty("mobile_number")
+    val mobileNumber: String? = null,
+
     @Field("first_name")
     @JsonProperty("first_name")
     val firstName: String? = null,
@@ -28,4 +32,5 @@ data class ProfileDocument(
     @Field("birthDate")
     @JsonProperty("birthDate")
     val birthDate: Date? = null
+
 )
