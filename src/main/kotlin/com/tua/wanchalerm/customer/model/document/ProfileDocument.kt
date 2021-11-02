@@ -1,4 +1,4 @@
-package com.tua.wanchaelrm.customer.model.document
+package com.tua.wanchalerm.customer.model.document
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import org.springframework.data.annotation.Id
@@ -29,8 +29,8 @@ data class ProfileDocument(
     @JsonProperty("last_name")
     val lastName: String? = null,
 
-    @Field("birthDate")
-    @JsonProperty("birthDate")
+    @Field("birth_date")
+    @JsonProperty("birth_date")
     val birthDate: Date? = null
 
 )

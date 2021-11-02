@@ -1,10 +1,11 @@
-package com.tua.wanchaelrm.customer.service
+package com.tua.wanchalerm.customer.service
 
-import com.tua.wanchaelrm.customer.model.document.ProfileDocument
-import com.tua.wanchaelrm.customer.model.request.ProfileRequest
+import com.tua.wanchalerm.customer.model.document.ProfileDocument
+import com.tua.wanchalerm.customer.model.request.ProfileRequest
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.InjectMocks
 import org.mockito.Mock
@@ -13,6 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
+import java.util.*
 
 @ExtendWith(MockitoExtension::class)
 internal class ProfileServiceTest {
@@ -27,23 +29,29 @@ internal class ProfileServiceTest {
     private val response =
         ProfileDocument(id = id, firstName = "wanchalerm", lastName = "yuphasuk", email = "wanchalerm.y@outlook.com")
 
-    @Test
-    fun add() {
-        val request = ProfileRequest(firstName = "wanchalerm", lastName = "yuphasuk")
+    private lateinit var profileRequest: ProfileRequest
 
-        `when`(mongoTemplate.save(any(ProfileDocument::class.java))).thenReturn(response)
-
-        val result = profileService.add(request)
-        assertEquals("445466900636", result?.id)
-        assertEquals("wanchalerm", result?.firstName)
-        assertEquals("wanchalerm.y@outlook.com", result?.email)
+    @BeforeEach
+    fun `set up`() {
+        profileRequest = ProfileRequest(
+            firstName = "wanchalerm",
+            lastName = "yuphasuk",
+            birthDate = Date(),
+            mobileNumber = "023232",
+            email = "wwwww@wsss.com",
+            digitalPass = "kdfowefwfeeww"
+        )
     }
 
     @Test
-    fun `add request null`() {
-        val result = profileService.add(null)
-        assertNull(result)
-        verify(mongoTemplate, never()).save(any(ProfileDocument::class.java))
+    fun add() {
+
+        `when`(mongoTemplate.save(any(ProfileDocument::class.java))).thenReturn(response)
+
+        val result = profileService.add(profileRequest)
+        assertEquals("445466900636", result?.id)
+        assertEquals("wanchalerm", result?.firstName)
+        assertEquals("wanchalerm.y@outlook.com", result?.email)
     }
 
     @Test

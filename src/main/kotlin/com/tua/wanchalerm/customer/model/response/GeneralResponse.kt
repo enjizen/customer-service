@@ -1,4 +1,4 @@
-package com.tua.wanchaelrm.customer.model.response
+package com.tua.wanchalerm.customer.model.response
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

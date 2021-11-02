@@ -1,9 +1,9 @@
-package com.tua.wanchaelrm.customer.controller
+package com.tua.wanchalerm.customer.controller
 
-import com.tua.wanchaelrm.customer.model.document.ProfileDocument
-import com.tua.wanchaelrm.customer.model.request.ProfileRequest
-import com.tua.wanchaelrm.customer.model.response.GeneralResponse
-import com.tua.wanchaelrm.customer.service.ProfileService
+import com.tua.wanchalerm.customer.model.document.ProfileDocument
+import com.tua.wanchalerm.customer.model.request.ProfileRequest
+import com.tua.wanchalerm.customer.model.response.GeneralResponse
+import com.tua.wanchalerm.customer.service.ProfileService
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.BeforeEach
@@ -15,6 +15,7 @@ import org.mockito.Mockito.*
 import org.mockito.junit.jupiter.MockitoExtension
 
 import org.springframework.http.HttpStatus
+import java.util.*
 
 
 @ExtendWith(MockitoExtension::class)
@@ -26,6 +27,19 @@ internal class ProfileControllerTest {
     @Mock
     private lateinit var profileService: ProfileService
 
+    private lateinit var profileRequest: ProfileRequest
+
+    @BeforeEach
+    fun `set up`() {
+        profileRequest = ProfileRequest(
+            firstName = "wwwww",
+            lastName = "ssdfww",
+            birthDate = Date(),
+            mobileNumber = "023232",
+            email = "wwwww@wsss.com",
+            digitalPass = "kdfowefwfeeww"
+        )
+    }
 
     @Test
     fun `add profile`() {
@@ -33,7 +47,7 @@ internal class ProfileControllerTest {
 
         `when`(profileService.add(any())).thenReturn(profileDocument)
 
-        val response = controller.addProfile(ProfileRequest())
+        val response = controller.addProfile(profileRequest)
         val body: ProfileDocument = response.body as ProfileDocument
         assertEquals(HttpStatus.OK, response.statusCode)
         assertEquals("0034322", body.id)

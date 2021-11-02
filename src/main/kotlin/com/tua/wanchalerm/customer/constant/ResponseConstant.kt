@@ -1,4 +1,4 @@
-package com.tua.wanchaelrm.customer.constant
+package com.tua.wanchalerm.customer.constant
 
 object ResponseConstant {
     const val SUCCESS = "success"

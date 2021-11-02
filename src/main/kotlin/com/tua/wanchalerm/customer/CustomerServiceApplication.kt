@@ -1,4 +1,4 @@
-package com.tua.wanchaelrm.customer
+package com.tua.wanchalerm.customer
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
